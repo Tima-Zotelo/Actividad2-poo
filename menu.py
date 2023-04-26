@@ -3,8 +3,8 @@ import csv
 from claseViajeroFrec import ViajeroFrec as vf
 
 class Menu:
-    def mostrarMenu(self):
-        ##os.system('cls')
+    def mostrarMenu(self, xLV=None):
+        os.system('cls')
         op = int (input ('''
     -------->Menu<--------
     Seleccione una opcion:
@@ -32,35 +32,44 @@ class Menu:
         for fila in reader:
             if bandera:
                 bandera = False
-            xNum = fila[0]
-            xDNI = fila[1]
-            xNombre = fila[2]
-            xApellido = fila[3]
-            xMillas = fila[4]
-            viajero = vf(xNum, xDNI, xNombre, xApellido, xMillas)
-            xLV.append(viajero)
-            total += 1
+            else:
+                xNum = fila[0]
+                xDNI = fila[1]
+                xNombre = fila[2]
+                xApellido = fila[3]
+                xMillas = fila[4]
+                viajero = vf(xNum, xDNI, xNombre, xApellido, xMillas)
+                xLV.append(viajero)
+                total += 1
         if total > 0:
             print (f'Lista cargada correctamente, se cargaron {total} viajeros')
+            os.system('pause')
         else:
             print ('Error en la carga')
-        return xLV
+            os.system('pause')
 
 
     def opcion2 (self, xLV):
-        ##os.system('cls')
+        os.system('cls')
         i = 0
         xNum = int (input ('ingrese numero del viajero: '))
-        print (f'asdasd {xLV.cantidadTotalDeMillas()}')
-        xViajero = int (xLV[i].getNumero())
-        print (f'primer xVioajero: {xViajero}')
+        xViajero = xLV[i].getNumero()
+        print (f'Primer numero: {xViajero}')
         while (i <= len(xLV) -1) and (xNum != xViajero):
+            print (f'i antes: {i}')
             i += 1
-            xViajero = int (xLV[i].getNumero())
-            print (xViajero)
-        print (f'xNum fuera while: {xNum}')
-        print (f'numero viajero: {xViajero}')
-
+            print (f'i despues: {i}')
+            if i < len(xLV):
+                print ('si')
+                xViajero = int (xLV[i].getNumero())
+                print (f'iffffff numero: {xViajero}') 
+        print (f'iiiiii: {i}')
+        print (f'ultimo numero: {xLV[i].getNumero()}')
+        if xNum != xViajero:
+            print ('Error, numero de viajero invalido')
+        else:
+            print(f'Viajero encontrado con el numero {xNum} y {xViajero}, indice = {i}, numero de viajero: {xLV[i].getNumero()}')
+        os.system('pause')
 
     def opcion3 (self):
         print ('opc 3')

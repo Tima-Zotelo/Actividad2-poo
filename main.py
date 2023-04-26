@@ -6,8 +6,8 @@ if __name__ == '__main__':
     xMenu = Menu()
     op = xMenu.mostrarMenu()
     while op != 0 & op <=3:
-        listaViaj = xMenu.ManejadorMenu (op, listaViaj)
-        op = xMenu.mostrarMenu()
+        xMenu.ManejadorMenu (op, listaViaj)
+        op = xMenu.mostrarMenu(listaViaj)
     print ('saliendo...')
     os.system('pause')
     os.system('exit')
